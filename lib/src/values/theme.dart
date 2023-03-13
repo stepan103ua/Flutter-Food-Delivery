@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
 
+const String fontFamily = 'Inter';
+
 final outlineInputBorder = OutlineInputBorder(
   borderRadius: BorderRadius.circular(10),
   borderSide: const BorderSide(
@@ -67,7 +69,7 @@ const textTheme = TextTheme(
 );
 
 final theme = ThemeData(
-  fontFamily: 'Inter',
+  fontFamily: fontFamily,
   primaryColor: AppColors.green,
   scaffoldBackgroundColor: AppColors.greenBackground,
   inputDecorationTheme: inputDecorationTheme,

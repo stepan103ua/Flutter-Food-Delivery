@@ -20,7 +20,7 @@ final inputDecorationTheme = InputDecorationTheme(
     color: AppColors.error,
   ),
   hintStyle: const TextStyle(
-    color: Color(0xff594C74),
+    color: AppColors.hint,
   ),
   activeIndicatorBorder: const BorderSide(
     color: AppColors.green,

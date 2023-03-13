@@ -5,4 +5,5 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color greenBackground = Color(0xff264653);
   static const Color error = Colors.redAccent;
+  static const Color hint = Color(0xff594C74);
 }

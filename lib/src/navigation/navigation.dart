@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/extensions/list_extension.dart';
 
-abstract class AppPage extends Equatable {
+class AppPage extends Equatable {
   final Page page;
 
   const AppPage({required this.page});

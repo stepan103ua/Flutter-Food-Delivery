@@ -21,8 +21,9 @@ final inputDecorationTheme = InputDecorationTheme(
   errorStyle: const TextStyle(
     color: AppColors.error,
   ),
-  hintStyle: const TextStyle(
-    color: AppColors.hint,
+  hintStyle: TextStyle(
+    fontSize: 20,
+    color: AppColors.green.withOpacity(0.5),
   ),
   activeIndicatorBorder: const BorderSide(
     color: AppColors.green,
@@ -39,7 +40,7 @@ final elevatedButtonTheme = ElevatedButtonThemeData(
     backgroundColor: AppColors.green,
     foregroundColor: AppColors.white,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(30),
     ),
     textStyle: const TextStyle(
       fontSize: 20,
@@ -47,24 +48,26 @@ final elevatedButtonTheme = ElevatedButtonThemeData(
     ),
     splashFactory: NoSplash.splashFactory,
     padding: const EdgeInsets.symmetric(
-      vertical: 12,
+      vertical: 13,
     ),
   ),
 );
 
 const textTheme = TextTheme(
-  titleMedium: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-    color: AppColors.green,
-  ),
-  bodyLarge: TextStyle(
+  titleLarge: TextStyle(
     fontSize: 36,
     fontWeight: FontWeight.w700,
+    color: AppColors.white,
   ),
-  bodyMedium: TextStyle(
+  titleMedium: TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  ),
+  titleSmall: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
   ),
 );
 

@@ -21,8 +21,9 @@ final inputDecorationTheme = InputDecorationTheme(
   errorStyle: const TextStyle(
     color: AppColors.error,
   ),
-  hintStyle: const TextStyle(
-    color: AppColors.hint,
+  hintStyle: TextStyle(
+    fontSize: 20,
+    color: AppColors.green.withOpacity(0.5),
   ),
   activeIndicatorBorder: const BorderSide(
     color: AppColors.green,
@@ -34,41 +35,57 @@ final inputDecorationTheme = InputDecorationTheme(
   ),
 );
 
+const elevatedButtonTextStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+);
+
 final elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
     backgroundColor: AppColors.green,
     foregroundColor: AppColors.white,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(10),
-    ),
-    textStyle: const TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w700,
-    ),
-    splashFactory: NoSplash.splashFactory,
+    textStyle: elevatedButtonTextStyle,
     padding: const EdgeInsets.symmetric(
       vertical: 12,
+    ),
+    disabledBackgroundColor: AppColors.green.withOpacity(0.3),
+    disabledForegroundColor: AppColors.lightGrey,
+  ),
+);
+
+final invertedElevatedButton = ElevatedButtonThemeData(
+  style: elevatedButtonTheme.style?.copyWith(
+    backgroundColor: const MaterialStatePropertyAll(AppColors.white),
+    foregroundColor: const MaterialStatePropertyAll(AppColors.green),
+    overlayColor: MaterialStatePropertyAll(
+      AppColors.green.withOpacity(0.1),
+    ),
+    textStyle: MaterialStatePropertyAll(
+      elevatedButtonTextStyle.copyWith(color: AppColors.green),
     ),
   ),
 );
 
 const textTheme = TextTheme(
-  titleMedium: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-    color: AppColors.green,
-  ),
-  bodyLarge: TextStyle(
+  titleLarge: TextStyle(
     fontSize: 36,
     fontWeight: FontWeight.w700,
+    color: AppColors.white,
   ),
-  bodyMedium: TextStyle(
+  titleMedium: TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  ),
+  titleSmall: TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
   ),
 );
 
 final theme = ThemeData(
+  useMaterial3: true,
   fontFamily: fontFamily,
   primaryColor: AppColors.green,
   scaffoldBackgroundColor: AppColors.greenBackground,

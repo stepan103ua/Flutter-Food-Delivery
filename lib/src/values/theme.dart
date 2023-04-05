@@ -35,20 +35,33 @@ final inputDecorationTheme = InputDecorationTheme(
   ),
 );
 
+const elevatedButtonTextStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+);
+
 final elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
     backgroundColor: AppColors.green,
     foregroundColor: AppColors.white,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30),
-    ),
-    textStyle: const TextStyle(
-      fontSize: 20,
-      fontWeight: FontWeight.w700,
-    ),
-    splashFactory: NoSplash.splashFactory,
+    textStyle: elevatedButtonTextStyle,
     padding: const EdgeInsets.symmetric(
-      vertical: 13,
+      vertical: 12,
+    ),
+    disabledBackgroundColor: AppColors.green.withOpacity(0.3),
+    disabledForegroundColor: AppColors.lightGrey,
+  ),
+);
+
+final invertedElevatedButton = ElevatedButtonThemeData(
+  style: elevatedButtonTheme.style?.copyWith(
+    backgroundColor: const MaterialStatePropertyAll(AppColors.white),
+    foregroundColor: const MaterialStatePropertyAll(AppColors.green),
+    overlayColor: MaterialStatePropertyAll(
+      AppColors.green.withOpacity(0.1),
+    ),
+    textStyle: MaterialStatePropertyAll(
+      elevatedButtonTextStyle.copyWith(color: AppColors.green),
     ),
   ),
 );
@@ -72,6 +85,7 @@ const textTheme = TextTheme(
 );
 
 final theme = ThemeData(
+  useMaterial3: true,
   fontFamily: fontFamily,
   primaryColor: AppColors.green,
   scaffoldBackgroundColor: AppColors.greenBackground,

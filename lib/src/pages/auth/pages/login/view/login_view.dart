@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/src/pages/auth/pages/login/login_cubit/login_cubit.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
+import 'package:food_delivery/src/values/theme.dart';
+import 'package:food_delivery/src/widgets/app_text_field.dart';
+import 'package:food_delivery/src/widgets/inverted_elevated_button.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -35,46 +40,46 @@ class LoginView extends StatelessWidget {
               _subTitle,
               style: textTheme.titleMedium,
             ),
-            const SizedBox(
-              height: 160,
-            ),
-            const TextField(
-              decoration: InputDecoration(hintText: _emailHint),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const TextField(
-              decoration: InputDecoration(
-                hintText: _passwordHint,
-              ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                _loginText,
-                style: textTheme.titleSmall,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-              ),
-              child: const Text(
-                _registerText,
-                style: TextStyle(
-                  color: AppColors.green,
-                  fontWeight: FontWeight.w700,
+            Expanded(
+              child: BlocBuilder<LoginCubit, LoginState>(
+                builder: (context, state) => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    AppTextField(
+                      hint: _emailHint,
+                      isValid: state.email.isValid,
+                      onChanged: context.read<LoginCubit>().onEmailUpdate,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    AppTextField(
+                      hint: _passwordHint,
+                      isValid: state.password.isValid,
+                      isPassword: true,
+                      onChanged: context.read<LoginCubit>().onPasswordUpdate,
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      onPressed: state.isValid
+                          ? context.read<LoginCubit>().onLoginPressed
+                          : null,
+                      child: const Text(_loginText),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    InvertedElevatedButton(
+                      onPressed: () {},
+                      child: const Text(_registerText),
+                    )
+                  ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

@@ -16,4 +16,11 @@ abstract class AppValidation {
     }
     return ValidationModel(value: password, isValid: true);
   }
+
+  static ValidationModel fieldValidation(String? field) {
+    if (field == null || field.isEmpty) {
+      return ValidationModel(value: field ?? '', isValid: false);
+    }
+    return ValidationModel(value: field, isValid: true);
+  }
 }

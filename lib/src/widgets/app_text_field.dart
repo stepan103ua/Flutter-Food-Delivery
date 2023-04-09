@@ -6,6 +6,7 @@ class AppTextField extends StatelessWidget {
   final bool? isValid;
   final Function(String) onChanged;
   final bool? isPassword;
+  final Icon? suffixIcon;
 
   const AppTextField({
     super.key,
@@ -13,18 +14,30 @@ class AppTextField extends StatelessWidget {
     this.isValid,
     required this.onChanged,
     this.isPassword,
+    this.suffixIcon,
   });
 
   @override
   Widget build(BuildContext context) => TextField(
         decoration: InputDecoration(
           hintText: hint,
-          suffixIcon:
-              isValid != null ? _ValidationStatus(isValid: isValid!) : null,
+          suffixIcon: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                isValid != null
+                    ? _ValidationStatus(isValid: isValid!)
+                    : Container(),
+                suffixIcon ?? Container(),
+              ],
+            ),
+          ),
         ),
         onChanged: onChanged,
         obscureText: isPassword ?? false,
         enableSuggestions: !(isPassword ?? false),
+        style: Theme.of(context).textTheme.bodyLarge,
       );
 }
 

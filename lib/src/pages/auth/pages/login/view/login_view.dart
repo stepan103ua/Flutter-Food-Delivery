@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/auth/pages/login/login_cubit/login_cubit.dart';
-import 'package:food_delivery/src/values/app_colors.dart';
-import 'package:food_delivery/src/values/theme.dart';
 import 'package:food_delivery/src/widgets/app_text_field.dart';
 import 'package:food_delivery/src/widgets/inverted_elevated_button.dart';
 

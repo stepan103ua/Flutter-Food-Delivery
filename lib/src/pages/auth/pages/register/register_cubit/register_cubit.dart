@@ -28,6 +28,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.updatedCitiesSuggestions(citiesSuggestions));
   }
 
+  void onCreateAccount() {}
+
+  void onPasswordChanged(String? password) =>
+      emit(state.updatedPassword(password));
+
+  void onConfirmPasswordChanged(String? confirmPassword) =>
+      emit(state.updatedConfirmPassword(confirmPassword));
+
   void onNameChanged(String? name) => emit(state.updatedName(name));
 
   void onLastNameChanged(String? lastName) =>

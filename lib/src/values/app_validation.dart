@@ -17,6 +17,23 @@ abstract class AppValidation {
     return ValidationModel(value: password, isValid: true);
   }
 
+  static ValidationModel confirmPasswordValidation({
+    required String? basePassword,
+    required String? confirmPassword,
+  }) {
+    final confirmPasswordValidation = passwordValidation(confirmPassword);
+
+    if (confirmPasswordValidation.isValid != null &&
+        !confirmPasswordValidation.isValid!) {
+      return confirmPasswordValidation;
+    }
+
+    return ValidationModel(
+      value: confirmPassword!,
+      isValid: basePassword == confirmPassword,
+    );
+  }
+
   static ValidationModel fieldValidation(String? field) {
     if (field == null || field.isEmpty) {
       return ValidationModel(value: field ?? '', isValid: false);

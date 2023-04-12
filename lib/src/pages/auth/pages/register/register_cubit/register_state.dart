@@ -5,6 +5,8 @@ abstract class RegisterState extends Equatable {
   final ValidationModel name;
   final ValidationModel lastName;
   final ValidationModel email;
+  final ValidationModel password;
+  final ValidationModel confirmPassword;
   final CitySuggestion? city;
 
   final List<CitySuggestion> citiesSuggestions;
@@ -20,6 +22,8 @@ abstract class RegisterState extends Equatable {
     required this.city,
     required this.foundCitiesSuggestions,
     required this.query,
+    required this.confirmPassword,
+    required this.password,
   });
 
   bool get canGoToCity =>
@@ -31,6 +35,43 @@ abstract class RegisterState extends Equatable {
       email.isValid!;
 
   bool get canGoToPassword => canGoToCity && city != null;
+
+  bool get canCreateAccount =>
+      canGoToPassword &&
+      password.isValid != null &&
+      password.isValid! &&
+      confirmPassword.isValid != null &&
+      confirmPassword.isValid!;
+
+  RegisterState updatedPassword(String? password) => RegisterUpdated(
+        step: step,
+        name: name,
+        lastName: lastName,
+        email: email,
+        citiesSuggestions: citiesSuggestions,
+        city: city,
+        foundCitiesSuggestions: foundCitiesSuggestions,
+        query: query,
+        password: AppValidation.passwordValidation(password),
+        confirmPassword: confirmPassword,
+      );
+
+  RegisterState updatedConfirmPassword(String? confirmPassword) =>
+      RegisterUpdated(
+        step: step,
+        name: name,
+        lastName: lastName,
+        email: email,
+        citiesSuggestions: citiesSuggestions,
+        city: city,
+        foundCitiesSuggestions: foundCitiesSuggestions,
+        query: query,
+        password: password,
+        confirmPassword: AppValidation.confirmPasswordValidation(
+          basePassword: password.value,
+          confirmPassword: confirmPassword,
+        ),
+      );
 
   RegisterState updatedQuery({
     required List<CitySuggestion> foundCitiesSuggestions,
@@ -45,6 +86,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: foundCitiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   RegisterState updatedCity(CitySuggestion city) => RegisterUpdated(
@@ -56,6 +99,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: foundCitiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   RegisterState updatedStep(RegisterStep step) => RegisterUpdated(
@@ -67,6 +112,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: foundCitiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   RegisterState updatedCitiesSuggestions(
@@ -81,6 +128,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: citiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   RegisterState updatedName(String? name) => RegisterUpdated(
@@ -92,6 +141,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: foundCitiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   RegisterState updatedLastName(String? lastName) => RegisterUpdated(
@@ -103,6 +154,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: foundCitiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   RegisterState updatedEmail(String? email) => RegisterUpdated(
@@ -114,6 +167,8 @@ abstract class RegisterState extends Equatable {
         city: city,
         foundCitiesSuggestions: foundCitiesSuggestions,
         query: query,
+        password: password,
+        confirmPassword: confirmPassword,
       );
 
   @override
@@ -126,6 +181,8 @@ abstract class RegisterState extends Equatable {
         city,
         foundCitiesSuggestions,
         query,
+        password,
+        confirmPassword,
       ];
 }
 
@@ -139,6 +196,8 @@ class RegisterInitial extends RegisterState {
     super.city,
     super.foundCitiesSuggestions = const [],
     super.query = '',
+    super.password = const ValidationModel(value: ''),
+    super.confirmPassword = const ValidationModel(value: ''),
   });
 }
 
@@ -152,5 +211,7 @@ class RegisterUpdated extends RegisterState {
     required super.city,
     required super.foundCitiesSuggestions,
     required super.query,
+    required super.password,
+    required super.confirmPassword,
   });
 }

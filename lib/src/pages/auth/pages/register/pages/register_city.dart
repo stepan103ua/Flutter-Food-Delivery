@@ -3,11 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/city_suggestion.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/register_cubit.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
+import 'package:food_delivery/src/values/strings.dart';
 import 'package:food_delivery/src/widgets/app_text_field.dart';
 import 'package:food_delivery/src/widgets/inverted_elevated_button.dart';
 
 class RegisterCity extends StatelessWidget {
   const RegisterCity({super.key});
+
+  static const _subtitle = 'Select your city';
+  static const _searchHint = 'Search your city';
 
   @override
   Widget build(BuildContext context) =>
@@ -18,12 +22,12 @@ class RegisterCity extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Select your city',
+                _subtitle,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: 40),
               AppTextField(
-                hint: 'Search your city',
+                hint: _searchHint,
                 onChanged: context.read<RegisterCubit>().onQueryChanged,
                 suffixIcon: const Icon(Icons.search_rounded, size: 35),
               ),
@@ -67,7 +71,7 @@ class RegisterCity extends StatelessWidget {
                       onPressed: context.read<RegisterCubit>().previousPage,
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Text('Back'),
+                        child: Text(Strings.back),
                       ),
                     ),
                     ElevatedButton(
@@ -76,7 +80,7 @@ class RegisterCity extends StatelessWidget {
                           : null,
                       child: const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Text('Next'),
+                        child: Text(Strings.next),
                       ),
                     )
                   ],

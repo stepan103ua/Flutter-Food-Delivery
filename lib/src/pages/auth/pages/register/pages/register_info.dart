@@ -4,6 +4,8 @@ import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/regis
 import 'package:food_delivery/src/widgets/app_text_field.dart';
 import 'package:food_delivery/src/widgets/inverted_elevated_button.dart';
 
+import '../../../../../values/strings.dart';
+
 class RegisterInfo extends StatelessWidget {
   const RegisterInfo({super.key});
 
@@ -11,7 +13,6 @@ class RegisterInfo extends StatelessWidget {
   static const _nameHint = 'Enter your name';
   static const _lastNameHint = 'Enter your last name';
   static const _emailNameHint = 'Enter your e-mail';
-  static const _next = 'Next';
   static const _backToLogin = 'Back to login';
 
   @override
@@ -33,25 +34,28 @@ class RegisterInfo extends StatelessWidget {
               hint: _nameHint,
               onChanged: cubit.onNameChanged,
               isValid: state.name.isValid,
+              value: state.name.value,
             ),
             const SizedBox(height: 20),
             AppTextField(
               hint: _lastNameHint,
               onChanged: cubit.onLastNameChanged,
               isValid: state.lastName.isValid,
+              value: state.lastName.value,
             ),
             const SizedBox(height: 20),
             AppTextField(
               hint: _emailNameHint,
               onChanged: cubit.onEmailChanged,
               isValid: state.email.isValid,
+              value: state.email.value,
             ),
             const Spacer(),
             ElevatedButton(
               onPressed: cubit.state.canGoToCity
                   ? context.read<RegisterCubit>().nextPage
                   : null,
-              child: const Text(_next),
+              child: const Text(Strings.next),
             ),
             const SizedBox(height: 20),
             InvertedElevatedButton(

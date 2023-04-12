@@ -43,7 +43,7 @@ class SpashScreenView extends StatelessWidget {
                       end: Alignment.topCenter,
                       colors: [
                         AppColors.greenBackground,
-                        AppColors.greenBackgroundTransparent,
+                        AppColors.transparent,
                       ],
                     ),
                   ),

@@ -5,7 +5,7 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color lightGrey = Color.fromARGB(255, 209, 208, 208);
   static const Color greenBackground = Color(0xff264653);
-  static const Color greenBackgroundTransparent = Color.fromARGB(0, 38, 70, 83);
+  static const Color transparent = Colors.transparent;
 
   static const Color error = Colors.redAccent;
   static const Color hint = Color(0xff594C74);

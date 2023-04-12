@@ -19,7 +19,7 @@ class SplashScreenCubit extends Cubit<SplashScreenState> {
   }
 
   void _init() async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await Future.delayed(const Duration(milliseconds: 1600));
     _callback.onSplashScreenFinished();
   }
 }

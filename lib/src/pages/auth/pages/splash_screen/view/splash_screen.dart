@@ -16,11 +16,12 @@ class SpashScreenView extends StatelessWidget {
     final mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        constraints: const BoxConstraints.expand(),
+        width: mediaQuery.width,
+        height: mediaQuery.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(splashScreenImagePath),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
         child: BlocBuilder<SplashScreenCubit, SplashScreenState>(

@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/src/navigation/navigation.dart';
 import 'package:food_delivery/src/pages/auth/auth_cubit/auth_cubit.dart';
 import 'package:food_delivery/src/pages/auth/view/auth_view.dart';
 import 'package:food_delivery/src/values/app_pages_names.dart';

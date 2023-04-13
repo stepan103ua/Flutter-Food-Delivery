@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/navigation/navigation.dart';
 import 'package:food_delivery/src/pages/auth/auth_cubit/auth_cubit.dart';
@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   static AppPage page() => const AppPage(
-        page: CupertinoPage(
+        page: MaterialPage(
           key: ValueKey(AppPagesNames.login),
           name: AppPagesNames.login,
           child: LoginPage(),

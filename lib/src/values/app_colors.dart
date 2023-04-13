@@ -6,6 +6,8 @@ class AppColors {
   static const Color lightGrey = Color.fromARGB(255, 209, 208, 208);
   static const Color grey = Color.fromRGBO(141, 153, 174, 1);
   static const Color greenBackground = Color(0xff264653);
+  static const Color transparent = Colors.transparent;
+
   static const Color error = Colors.redAccent;
   static const Color hint = Color(0xff594C74);
 }

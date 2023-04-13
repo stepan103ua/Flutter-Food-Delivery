@@ -6,11 +6,12 @@ import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/regis
 import 'package:food_delivery/src/pages/auth/pages/register/view/register_page.dart';
 
 import '../pages/login/login_cubit/login_callback.dart';
+import '../pages//splash_screen/splash_screen_cubit/splash_screen_callback.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends NavigationCubit<AuthState>
-    implements LoginCallback, RegisterCallback {
+    implements LoginCallback, RegisterCallback, SplashScreenCallback {
   AuthCubit() : super(AuthState(pages: [LoginPage.page()]));
 
   @override
@@ -18,4 +19,9 @@ class AuthCubit extends NavigationCubit<AuthState>
 
   @override
   onBackToLogin() => emit(state.pop());
+
+  @override
+  void onSplashScreenFinished() {
+    emit(state.withPagesStack([LoginPage.page()]));
+  }
 }

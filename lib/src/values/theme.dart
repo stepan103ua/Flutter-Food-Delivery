@@ -98,3 +98,11 @@ final theme = ThemeData(
   elevatedButtonTheme: elevatedButtonTheme,
   textTheme: textTheme,
 );
+
+extension TextThemeExtension on TextTheme {
+  TextStyle get logoTitle => const TextStyle(
+        fontSize: 48,
+        fontWeight: FontWeight.w700,
+        color: AppColors.green,
+      );
+}

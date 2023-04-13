@@ -5,11 +5,11 @@ import 'package:food_delivery/src/values/app_colors.dart';
 import 'package:food_delivery/src/values/app_constants.dart';
 import 'package:food_delivery/src/values/theme.dart';
 
-class SpashScreenView extends StatelessWidget {
+class SplashScreenView extends StatelessWidget {
   final Duration _animationDuration = const Duration(milliseconds: 1000);
   final Curve _gradientCurve = Curves.linearToEaseOut;
   final Curve _appNameCurve = Curves.fastLinearToSlowEaseIn;
-  const SpashScreenView({super.key});
+  const SplashScreenView({super.key});
 
   @override
   Widget build(BuildContext context) {

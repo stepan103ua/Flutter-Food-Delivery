@@ -71,7 +71,8 @@ class LoginView extends StatelessWidget {
                       height: 20,
                     ),
                     InvertedElevatedButton(
-                      onPressed: () {},
+                      onPressed:
+                          context.read<LoginCubit>().onCreateAccountPressed,
                       child: const Text(_registerText),
                     )
                   ],

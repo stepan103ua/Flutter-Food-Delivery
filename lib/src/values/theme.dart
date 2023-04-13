@@ -82,6 +82,11 @@ const textTheme = TextTheme(
     fontWeight: FontWeight.w700,
     color: AppColors.white,
   ),
+  bodyLarge: TextStyle(
+    fontSize: 20,
+    color: AppColors.green,
+    fontWeight: FontWeight.w700,
+  ),
 );
 
 final theme = ThemeData(

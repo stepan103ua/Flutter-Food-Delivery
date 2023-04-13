@@ -21,6 +21,6 @@ class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => SplashScreenCubit(callback: context.read<AuthCubit>()),
-        child: const SpashScreenView(),
+        child: const SplashScreenView(),
       );
 }

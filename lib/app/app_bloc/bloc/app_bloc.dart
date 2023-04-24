@@ -35,7 +35,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _init() {
-    _authSubscription = _auth.userChanges().listen(_onUserChange);
+    // _authSubscription = _auth.userChanges().listen(_onUserChange);
   }
 
   void _onUserChange(User? user) {

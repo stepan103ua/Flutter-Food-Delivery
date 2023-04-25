@@ -2,22 +2,19 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 part 'app_event.dart';
+
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState> {
-  final FirebaseAuth _auth;
   late final StreamSubscription _authSubscription;
 
-  AppBloc({required FirebaseAuth firebaseAuth})
-      : _auth = firebaseAuth,
-        super(AppInitializing()) {
+  AppBloc() : super(AppInitializing()) {
     on<AppGoToAuthenticationEvent>(_onGoToAuthenticationEvent);
     on<AppGoToAuthenticatedEvent>(_onGoToAuthenticatedEvent);
 
-    _init();
+    //_init();
   }
 
   void _onGoToAuthenticationEvent(
@@ -32,16 +29,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     Emitter<AppState> emit,
   ) {
     emit(state.authenticated);
-  }
-
-  void _init() {
-    // _authSubscription = _auth.userChanges().listen(_onUserChange);
-  }
-
-  void _onUserChange(User? user) {
-    add(
-      user == null ? AppGoToAuthenticationEvent() : AppGoToAuthenticatedEvent(),
-    );
   }
 
   @override

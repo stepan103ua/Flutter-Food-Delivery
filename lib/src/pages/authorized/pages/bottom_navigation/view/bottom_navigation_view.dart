@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/bottom_navigation_cubit/bottom_navigation_cubit.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/view/cart_page.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/history/view/history_page.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/view/home_page.dart';
 import 'package:food_delivery/src/widgets/app_navigation_destination.dart';
 
@@ -18,16 +20,16 @@ class BottomNavigationView extends StatelessWidget {
           body: Stack(
             children: [
               Offstage(
-                offstage: state.page == AuthorizedBottomNavigationPage.home,
+                offstage: state.page != AuthorizedBottomNavigationPage.home,
                 child: const HomePage(),
               ),
               Offstage(
-                offstage: state.page == AuthorizedBottomNavigationPage.cart,
-                child: const HomePage(),
+                offstage: state.page != AuthorizedBottomNavigationPage.cart,
+                child: const CartPage(),
               ),
               Offstage(
-                offstage: state.page == AuthorizedBottomNavigationPage.history,
-                child: const HomePage(),
+                offstage: state.page != AuthorizedBottomNavigationPage.history,
+                child: const HistoryPage(),
               ),
             ],
           ),

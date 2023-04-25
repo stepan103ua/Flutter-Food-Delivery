@@ -42,6 +42,7 @@ class BottomNavigationView extends StatelessWidget {
               ),
             ],
             onTap: context.read<BottomNavigationCubit>().setPageByIndex,
+            currentIndex: state.page.index,
           ),
         ),
       );

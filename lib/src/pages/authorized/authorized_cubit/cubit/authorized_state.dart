@@ -1,10 +1,14 @@
 part of 'authorized_cubit.dart';
 
-abstract class AuthorizedState extends Equatable {
-  const AuthorizedState();
+class AuthorizedState extends Equatable with WithPageStack {
+  const AuthorizedState({required this.pages});
 
   @override
-  List<Object> get props => [];
-}
+  final List<AppPage> pages;
 
-class AuthorizedInitial extends AuthorizedState {}
+  @override
+  withPagesStack(List<AppPage> pages) => AuthorizedState(pages: pages);
+
+  @override
+  List<Object> get props => [pages];
+}

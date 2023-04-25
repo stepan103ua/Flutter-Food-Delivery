@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/bottom_navigation_cubit/bottom_navigation_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/view/home_page.dart';
+import 'package:food_delivery/src/widgets/app_navigation_destination.dart';
 
 class BottomNavigationView extends StatelessWidget {
   const BottomNavigationView({super.key});
+
+  static const _homeLabel = 'Home';
+  static const _cartLabel = 'Cart';
+  static const _historyLabel = 'History';
 
   @override
   Widget build(BuildContext context) =>
@@ -26,23 +31,27 @@ class BottomNavigationView extends StatelessWidget {
               ),
             ],
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
-                label: 'Home',
+          bottomNavigationBar: NavigationBar(
+            destinations: const [
+              AppNavigationDestination(
+                unselectedIcon: Icons.home_outlined,
+                selectedIcon: Icons.home,
+                label: _homeLabel,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart_rounded),
-                label: 'Cart',
+              AppNavigationDestination(
+                unselectedIcon: Icons.shopping_cart_outlined,
+                selectedIcon: Icons.shopping_cart,
+                label: _cartLabel,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.history_rounded),
-                label: 'History',
+              AppNavigationDestination(
+                unselectedIcon: Icons.history_outlined,
+                selectedIcon: Icons.history,
+                label: _historyLabel,
               ),
             ],
-            onTap: context.read<BottomNavigationCubit>().setPageByIndex,
-            currentIndex: state.page.index,
+            onDestinationSelected:
+                context.read<BottomNavigationCubit>().setPageByIndex,
+            selectedIndex: state.page.index,
           ),
         ),
       );

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/auth/pages/splash_screen/splash_screen_cubit/splash_screen_cubit.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
 import 'package:food_delivery/src/values/app_constants.dart';
-import 'package:food_delivery/src/values/theme.dart';
+import 'package:food_delivery/src/values/theme/theme.dart';
 
 class SplashScreenView extends StatelessWidget {
   final Duration _animationDuration = const Duration(milliseconds: 1000);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
+import 'package:food_delivery/src/values/theme/app_navigation_destination_theme.dart';
 
 const String fontFamily = 'Inter';
 
@@ -89,6 +90,26 @@ const textTheme = TextTheme(
   ),
 );
 
+const bottomNavigationTheme = NavigationBarThemeData(
+  backgroundColor: AppColors.greenBackground,
+  elevation: 0,
+  labelTextStyle: MaterialStatePropertyAll(
+    TextStyle(
+      color: AppColors.green,
+      fontWeight: FontWeight.bold,
+      fontSize: 16,
+    ),
+  ),
+  iconTheme: MaterialStatePropertyAll(
+    IconThemeData(
+      color: AppColors.lightGrey,
+      size: 28,
+    ),
+  ),
+  indicatorColor: AppColors.white,
+  labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+);
+
 final theme = ThemeData(
   useMaterial3: true,
   fontFamily: fontFamily,
@@ -96,6 +117,7 @@ final theme = ThemeData(
   scaffoldBackgroundColor: AppColors.greenBackground,
   inputDecorationTheme: inputDecorationTheme,
   elevatedButtonTheme: elevatedButtonTheme,
+  navigationBarTheme: bottomNavigationTheme,
   textTheme: textTheme,
 );
 
@@ -104,5 +126,13 @@ extension TextThemeExtension on TextTheme {
         fontSize: 48,
         fontWeight: FontWeight.w700,
         color: AppColors.green,
+      );
+}
+
+extension ThemeExtension on ThemeData {
+  AppNavigationDestinationTheme get appNavigationDestinationTheme =>
+      AppNavigationDestinationTheme(
+        selectedIconColor: AppColors.green,
+        selectedIconSize: 30,
       );
 }

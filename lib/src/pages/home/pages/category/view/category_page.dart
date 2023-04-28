@@ -9,12 +9,10 @@ import 'category_view.dart';
 class CategoryPage extends StatelessWidget {
   const CategoryPage({super.key});
 
-  static page() => const AppPage(
-        page: MaterialPage(
-          key: ValueKey(AppPagesNames.category),
-          name: AppPagesNames.category,
-          child: CategoryPage(),
-        ),
+  static page() => MaterialPage(
+        key: ValueKey(AppPagesNames.category),
+        name: AppPagesNames.category,
+        child: CategoryPage(),
       );
 
   @override

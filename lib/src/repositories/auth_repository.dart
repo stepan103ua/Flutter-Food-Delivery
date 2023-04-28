@@ -18,7 +18,7 @@ class AuthRepository {
       final response = await _service.login(request);
 
       await _dao.saveAccessToken(response.accessToken);
-    } on ApiError catch(error) {
+    } on ApiError catch (error) {
       return Future.error(error);
     }
   }
@@ -28,7 +28,7 @@ class AuthRepository {
       final response = await _service.register(request);
 
       await _dao.saveAccessToken(response.accessToken);
-    } on ApiError catch(error) {
+    } on ApiError catch (error) {
       return Future.error(error);
     }
   }

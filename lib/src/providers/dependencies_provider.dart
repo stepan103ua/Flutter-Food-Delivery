@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:food_delivery/src/dao/auth_dao.dart';
 import 'package:food_delivery/src/repositories/auth_repository.dart';
 import 'package:food_delivery/src/services/auth_service.dart';
+import 'package:food_delivery/src/services/rest_client.dart';
 
 class DependenciesProvider extends StatelessWidget {
   const DependenciesProvider({super.key, required this.child});
@@ -15,20 +16,22 @@ class DependenciesProvider extends StatelessWidget {
   Widget build(BuildContext context) => MultiRepositoryProvider(
         providers: [
           RepositoryProvider(
-            create: (context) =>
-                BaseOptions(baseUrl: 'http://localhost:8000/api'),
-          ),
-          RepositoryProvider(
-            create: (context) => Dio(RepositoryProvider.of(context)),
+            create: (context) => Dio(),
           ),
           RepositoryProvider(create: (context) => const FlutterSecureStorage()),
           RepositoryProvider(
             create: (context) =>
-                AuthService(dio: RepositoryProvider.of(context)),
+                AuthDao(storage: RepositoryProvider.of(context)),
+          ),
+          RepositoryProvider(
+            create: (context) => RestClient(
+              dio: RepositoryProvider.of(context),
+              authDao: RepositoryProvider.of(context),
+            ),
           ),
           RepositoryProvider(
             create: (context) =>
-                AuthDao(storage: RepositoryProvider.of(context)),
+                AuthService(restClient: RepositoryProvider.of(context)),
           ),
           RepositoryProvider(
             create: (context) => AuthRepository(

@@ -1,9 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:food_delivery/src/errors/api_error.dart';
+import 'package:food_delivery/src/pages/auth/auth_cubit/auth_callback.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/city_suggestion.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/register_repository.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/register_callback.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/register_step_enum.dart';
+import 'package:food_delivery/src/repositories/auth_repository.dart';
+import 'package:food_delivery/src/services/requests/register_request.dart';
 
 import '../../../../../models/validation_model.dart';
 import '../../../../../values/app_validation.dart';
@@ -12,13 +16,19 @@ part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
   final RegisterCallback _callback;
+  final AuthCallback _authCallback;
+  final AuthRepository _authRepository;
   final RegisterRepository _repository;
 
   RegisterCubit({
     required RegisterCallback callback,
     required RegisterRepository repository,
+    required AuthCallback authCallback,
+    required AuthRepository authRepository,
   })  : _callback = callback,
         _repository = repository,
+        _authCallback = authCallback,
+        _authRepository = authRepository,
         super(const RegisterInitial()) {
     _init();
   }
@@ -28,7 +38,24 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.updatedCitiesSuggestions(citiesSuggestions));
   }
 
-  void onCreateAccount() {}
+  void onCreateAccount() async {
+    if (!state.canCreateAccount) {
+      return;
+    }
+
+    try {
+      final request = RegisterRequest(
+        name: state.name.value,
+        lastName: state.lastName.value,
+        email: state.email.value,
+        city: state.city!.name,
+        password: state.password.value,
+      );
+
+      await _authRepository.register(request);
+      _authCallback.onAuthenticated();
+    } on ApiError catch (error) {}
+  }
 
   void onPasswordChanged(String? password) =>
       emit(state.updatedPassword(password));

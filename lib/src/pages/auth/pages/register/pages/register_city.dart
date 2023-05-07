@@ -30,6 +30,7 @@ class RegisterCity extends StatelessWidget {
                 hint: _searchHint,
                 onChanged: context.read<RegisterCubit>().onQueryChanged,
                 suffixIcon: const Icon(Icons.search_rounded, size: 35),
+                value: state.city?.name,
               ),
               const SizedBox(height: 20),
               Expanded(

@@ -6,4 +6,6 @@ abstract class AppPagesNames {
 
   static const authorized = '/authorized';
   static const bottomNavigation = '/authorized/bottom_navigation';
+
+  static const initialization = '/initialization';
 }

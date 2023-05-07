@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery/src/errors/api_error.dart';
+import 'package:food_delivery/src/models/message.dart';
+import 'package:food_delivery/src/models/with_messages.dart';
 import 'package:food_delivery/src/pages/auth/auth_cubit/auth_callback.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/city_suggestion.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/register_repository.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/register_callback.dart';
+import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/register_message.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/register_cubit/register_step_enum.dart';
 import 'package:food_delivery/src/repositories/auth_repository.dart';
 import 'package:food_delivery/src/services/requests/register_request.dart';
@@ -29,7 +32,7 @@ class RegisterCubit extends Cubit<RegisterState> {
         _repository = repository,
         _authCallback = authCallback,
         _authRepository = authRepository,
-        super(const RegisterInitial()) {
+        super(RegisterInitial()) {
     _init();
   }
 
@@ -51,11 +54,18 @@ class RegisterCubit extends Cubit<RegisterState> {
         city: state.city!.name,
         password: state.password.value,
       );
-
+      emit(state.loading);
       await _authRepository.register(request);
       _authCallback.onAuthenticated();
-    } on ApiError catch (error) {}
+    } on ApiError catch (error) {
+      emit(state.updated);
+      emit(
+        state.pushMessage(FailedToRegisterMessage(errorMessage: error.message)),
+      );
+    }
   }
+
+  void popMessage(Message message) => emit(state.popMessage(message));
 
   void onPasswordChanged(String? password) =>
       emit(state.updatedPassword(password));

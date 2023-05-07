@@ -55,6 +55,7 @@ class _AppTextFieldState extends State<AppTextField> {
             ),
           ),
         ),
+        onTapOutside: (_) => FocusScope.of(context).unfocus(),
         onChanged: widget.onChanged,
         obscureText: widget.isPassword ?? false,
         enableSuggestions: !(widget.isPassword ?? false),

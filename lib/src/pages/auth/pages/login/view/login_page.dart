@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/app/app_bloc/bloc/app_bloc.dart';
 import 'package:food_delivery/src/navigation/navigation.dart';
 import 'package:food_delivery/src/pages/auth/auth_cubit/auth_cubit.dart';
 import 'package:food_delivery/src/pages/auth/pages/login/login_cubit/login_cubit.dart';
@@ -19,7 +20,11 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (_) => LoginCubit(callback: context.read<AuthCubit>()),
+        create: (context) => LoginCubit(
+          callback: context.read<AuthCubit>(),
+          authCallback: context.read<AppBloc>(),
+          repository: RepositoryProvider.of(context),
+        ),
         child: const LoginView(),
       );
 }

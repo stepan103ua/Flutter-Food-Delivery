@@ -20,6 +20,12 @@ abstract class LoginState extends Equatable with WithMessages {
         messages: messages,
       );
 
+  LoginState get loading => LoginLoading(
+        email: email,
+        password: password,
+        messages: messages,
+      );
+
   LoginState updated({ValidationModel? email, ValidationModel? password}) =>
       LoginUpdated(
         email: email ?? this.email,
@@ -50,6 +56,14 @@ class LoginInitial extends LoginState {
     super.email = const ValidationModel(value: ''),
     super.password = const ValidationModel(value: ''),
     super.messages = const [],
+  });
+}
+
+class LoginLoading extends LoginState {
+  LoginLoading({
+    required super.email,
+    required super.password,
+    required super.messages,
   });
 }
 

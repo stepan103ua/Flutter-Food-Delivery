@@ -13,7 +13,7 @@ class AuthService {
   Future<AuthResponse> login(LoginRequest request) async {
     try {
       final response =
-          await _restClient.post(endpoint: 'http://192.168.0.105:8000/api/login', body: request.toJson());
+          await _restClient.post(endpoint: '/login', body: request.toJson());
       return AuthResponse.fromJson(response.data);
     } on ApiError catch (_) {
       rethrow;

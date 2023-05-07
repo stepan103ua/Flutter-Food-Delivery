@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_delivery/src/values/theme/theme.dart';
 
 class InvertedElevatedButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
   const InvertedElevatedButton({
     super.key,

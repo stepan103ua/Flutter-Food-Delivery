@@ -28,10 +28,13 @@ class LoginView extends StatelessWidget {
               title: const Text('Failed to login'),
               content: Text(message.errorMessage),
               actions: [
-                TextButton(onPressed: () {}, child: const Text('Ok')),
+                TextButton(
+                  onPressed: Navigator.of(context).pop,
+                  child: const Text('Ok'),
+                ),
               ],
             ),
-          );
+          ).then((_) => context.read<LoginCubit>().popMessage(message));
         }
       },
       child: Scaffold(
@@ -58,43 +61,50 @@ class LoginView extends StatelessWidget {
               ),
               Expanded(
                 child: BlocBuilder<LoginCubit, LoginState>(
-                  builder: (context, state) => Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      AppTextField(
-                        hint: _emailHint,
-                        isValid: state.email.isValid,
-                        onChanged: context.read<LoginCubit>().onEmailUpdate,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      AppTextField(
-                        hint: _passwordHint,
-                        isValid: state.password.isValid,
-                        isPassword: true,
-                        onChanged: context.read<LoginCubit>().onPasswordUpdate,
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      ElevatedButton(
-                        onPressed: state.isValid
-                            ? context.read<LoginCubit>().onLoginPressed
-                            : null,
-                        child: const Text(_loginText),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      InvertedElevatedButton(
-                        onPressed:
-                            context.read<LoginCubit>().onCreateAccountPressed,
-                        child: const Text(_registerText),
-                      )
-                    ],
-                  ),
+                  builder: (context, state) {
+                    final isLoading = state is LoginLoading;
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        AppTextField(
+                          hint: _emailHint,
+                          isValid: state.email.isValid,
+                          onChanged: context.read<LoginCubit>().onEmailUpdate,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        AppTextField(
+                          hint: _passwordHint,
+                          isValid: state.password.isValid,
+                          isPassword: true,
+                          onChanged:
+                              context.read<LoginCubit>().onPasswordUpdate,
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                          onPressed: state.isValid && !isLoading
+                              ? context.read<LoginCubit>().onLoginPressed
+                              : null,
+                          child: const Text(_loginText),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InvertedElevatedButton(
+                          onPressed: isLoading
+                              ? null
+                              : context
+                                  .read<LoginCubit>()
+                                  .onCreateAccountPressed,
+                          child: const Text(_registerText),
+                        )
+                      ],
+                    );
+                  },
                 ),
               ),
             ],

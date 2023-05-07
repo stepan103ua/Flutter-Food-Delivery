@@ -13,14 +13,11 @@ class ApiError {
       return 'Unknown error occurred';
     }
 
-    log(dioError.toString());
-
     if(dioError!.response == null) {
       return 'Check your internet connection';
     }
 
     try{
-      log(dioError!.response!.data);
       return ErrorResponse.fromJson(dioError!.response!.data).errorMessage;
     } catch (e) {
       log(e.toString());

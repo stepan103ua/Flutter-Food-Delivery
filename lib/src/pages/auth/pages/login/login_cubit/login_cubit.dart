@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery/src/errors/api_error.dart';
@@ -47,15 +45,18 @@ class LoginCubit extends Cubit<LoginState> {
         email: state.email.value,
         password: state.password.value,
       );
-
+      emit(state.loading);
       await _repository.login(request);
 
       _authCallback.onAuthenticated();
     } on ApiError catch (error) {
+      emit(state.updated());
       emit(state.pushMessage(FailedToLoginMessage(error.message)));
-      print('PUSHED MESSAGE: ${error.message}');
-      // log(runtimeType.toString(), error: error);
     }
+  }
+
+  void popMessage(Message message) {
+    emit(state.popMessage(message));
   }
 
   void onCreateAccountPressed() => _callback.openCreateAccountPage();

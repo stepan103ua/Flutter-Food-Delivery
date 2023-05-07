@@ -14,17 +14,21 @@ class RestClient {
         _authDao = authDao;
 
   Future<Dio> get _client async {
-    final accessToken = await _authDao.accessToken;
-    if (accessToken == null) {
-      return _dio;
-    }
     _dio.options = BaseOptions(
       baseUrl: 'http://192.168.0.105:8000/api',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $accessToken',
       },
     );
+
+    final accessToken = await _authDao.accessToken;
+
+    if (accessToken == null) {
+      return _dio;
+    }
+
+    _dio.options.headers
+        .putIfAbsent('Authorization', () => 'Bearer $accessToken');
 
     return _dio;
   }
@@ -36,17 +40,15 @@ class RestClient {
   }) async {
     try {
       final client = await _client;
-      log('BEFORE POST: ${body.toString()}');
       return await client.post(
         endpoint,
         data: body,
         queryParameters: queryParameters,
       );
     } on DioError catch (error) {
-      log(error.toString());
       return Future.error(ApiError(error));
     } catch (error) {
-      // log(error.toString(), name: 'Unexpected error: $runtimeType');
+      log(error.toString(), name: 'Unexpected error: $runtimeType');
       return Future.error(ApiError());
     }
   }

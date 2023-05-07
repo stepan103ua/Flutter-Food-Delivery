@@ -43,6 +43,7 @@ dependencies:
   dio: ^5.1.1
   build_runner: ^2.3.3
   flutter_secure_storage: ^8.0.0
+  slugify: ^2.0.0
 flutter_native_splash:
   background_image: "assets/images/splash_image.png"
   android_12: 

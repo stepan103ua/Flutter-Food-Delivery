@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/app/app_bloc/bloc/app_bloc.dart';
 import 'package:food_delivery/src/pages/auth/auth_cubit/auth_cubit.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/cities_service.dart';
 import 'package:food_delivery/src/pages/auth/pages/register/models/register_repository.dart';
@@ -25,6 +26,8 @@ class RegisterPage extends StatelessWidget {
         create: (context) => RegisterCubit(
           callback: context.read<AuthCubit>(),
           repository: RegisterRepository(citiesService: CitiesService()),
+          authCallback: context.read<AppBloc>(),
+          authRepository: RepositoryProvider.of(context),
         ),
         child: const RegisterView(),
       );

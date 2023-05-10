@@ -12,6 +12,7 @@ class ApiError {
     if(dioError == null) {
       return 'Unknown error occurred';
     }
+
     if(dioError!.response == null) {
       return 'Check your internet connection';
     }

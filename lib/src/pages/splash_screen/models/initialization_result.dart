@@ -1,0 +1,4 @@
+enum InitializationResult {
+  authorized,
+  notAuthorized,
+}

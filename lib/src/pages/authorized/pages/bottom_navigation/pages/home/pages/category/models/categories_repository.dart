@@ -1,27 +1,28 @@
-import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/pages/category/models/responses/categories_response.dart';
-
+import 'package:food_delivery/src/errors/api_error.dart';
+import 'package:food_delivery/src/models/category.dart';
 import 'categories_service.dart';
 
 class CategoriesRepository {
   final CategoriesService _categoriesService;
 
-  CategoriesRepository({required CategoriesService categoriesService})
-      : _categoriesService = categoriesService;
+  CategoriesRepository({
+    required CategoriesService categoriesService,
+  }) : _categoriesService = categoriesService;
 
-  Future<CategoriesResponse> getCategories() async {
+  Future<List<Category>> getCategories() async {
     try {
       final response = await _categoriesService.getCategories();
       return response;
-    } catch (e) {
+    } on ApiError catch (e) {
       return Future.error(e);
     }
   }
 
-  Future<CategoriesResponse> getCategoriesByQuery(String query) async {
+  Future<List<Category>> getCategoriesByQuery(String query) async {
     try {
       final response = await _categoriesService.getCategoriesByQuery(query);
       return response;
-    } catch (e) {
+    } on ApiError catch (e) {
       return Future.error(e);
     }
   }

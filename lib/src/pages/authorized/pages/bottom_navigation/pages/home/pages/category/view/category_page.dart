@@ -24,7 +24,7 @@ class CategoryPage extends StatelessWidget {
         create: (_) => CategoryCubit(
           categoriesRepository: CategoriesRepository(
             categoriesService: CategoriesService(
-              dio: RepositoryProvider.of(context),
+              restClient: RepositoryProvider.of(context),
             ),
           ),
         ),

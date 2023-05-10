@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/pages/category/models/categories_repository.dart';
 import 'package:food_delivery/src/values/app_constants.dart';
 import 'package:food_delivery/src/values/theme/theme.dart';
 import 'package:food_delivery/src/widgets/app_text_field.dart';
@@ -12,8 +13,10 @@ class CategoryView extends StatelessWidget {
     Icons.search,
     size: 30,
   );
-  final _categorySearchInputHint = 'Search category';
-  const CategoryView({super.key});
+  final String _categorySearchInputHint = 'Search category';
+  const CategoryView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -30,26 +33,27 @@ class CategoryView extends StatelessWidget {
                 const SizedBox(height: 20),
                 AppTextField(
                   hint: _categorySearchInputHint,
-                  onChanged: (value) => context.read<CategoryCubit>()
-                    ..getCategoriesByQuery(value),
+                  onChanged: context.read<CategoryCubit>().onQueryChanged,
                   suffixIcon: _searchIcon,
                 ),
                 const SizedBox(height: 20),
                 Expanded(
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 150 / 190,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
+                  child: BlocBuilder<CategoryCubit, CategoryState>(
+                    builder: (context, state) => GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 150 / 190,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                      ),
+                      itemBuilder: (context, index) => CategoryItemWidget(
+                        onTap: () {},
+                        categoryName: state.categories[index].name,
+                        imageUrl: state.categories[index].imageUrl,
+                      ),
+                      itemCount: state.categories.length,
                     ),
-                    itemBuilder: (context, index) => CategoryItemWidget(
-                      onTap: () {},
-                      categoryName: 'Burgers',
-                      imageUrl: 'assets/images/burger.png',
-                    ),
-                    itemCount: 10,
                   ),
                 )
               ],

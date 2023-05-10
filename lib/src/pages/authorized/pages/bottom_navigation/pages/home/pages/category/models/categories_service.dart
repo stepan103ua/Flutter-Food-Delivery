@@ -1,36 +1,33 @@
 import 'dart:developer';
 
-import 'package:dio/dio.dart';
+import 'package:food_delivery/src/services/rest_client.dart';
 
 import '../../../../../../../../../errors/api_error.dart';
-import 'responses/categories_response.dart';
+import '../../../../../../../../../models/category.dart';
 
 class CategoriesService {
-  final Dio _dio;
+  final RestClient _restClient;
+  CategoriesService({required RestClient restClient})
+      : _restClient = restClient;
 
-  CategoriesService({required Dio dio}) : _dio = dio;
-
-  Future<CategoriesResponse> getCategories() async {
+  Future<List<Category>> getCategories() async {
     try {
-      final response = await _dio.get('/categories');
-      return CategoriesResponse.fromJson(response.data);
-    } on DioError catch (error) {
+      final response = await _restClient.get(endpoint: '/categories');
+      return (response.data as List).map(Category.fromJson).toList();
+    } on ApiError catch (error) {
       return Future.error(error);
-    } catch (e) {
-      return Future.error(e);
     }
   }
 
-  Future<CategoriesResponse> getCategoriesByQuery(String query) async {
+  Future<List<Category>> getCategoriesByQuery(String query) async {
     try {
-      final response =
-          await _dio.get('/categories', queryParameters: {'query': query});
-      return CategoriesResponse.fromJson(response.data);
-    } on DioError catch (error) {
-      return Future.error(ApiError(error));
-    } catch (e) {
-      log(e.toString(), name: e.runtimeType.toString());
-      return Future.error(e);
+      final response = await _restClient
+          .get(endpoint: '/categories', queryParameters: {'search': query});
+      final categories =
+          (response.data as List).map(Category.fromJson).toList();
+      return categories;
+    } on ApiError catch (error) {
+      return Future.error(error);
     }
   }
 }

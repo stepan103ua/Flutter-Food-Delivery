@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/src/values/app_pages_names.dart';
 
 import '../home_cubit/home_cubit.dart';
 import 'home_view.dart';

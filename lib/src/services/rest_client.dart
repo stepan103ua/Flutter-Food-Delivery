@@ -15,7 +15,7 @@ class RestClient {
 
   Future<Dio> get _client async {
     _dio.options = BaseOptions(
-      baseUrl: 'http://192.168.0.105:8000/api',
+      baseUrl: 'http://192.168.1.96:8000/api',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -40,11 +40,14 @@ class RestClient {
   }) async {
     try {
       final client = await _client;
-      return await client.post(
+
+      final res = await client.post(
         endpoint,
         data: body,
         queryParameters: queryParameters,
       );
+      log(res.toString());
+      return res;
     } on DioError catch (error) {
       return Future.error(ApiError(error));
     } catch (error) {

@@ -14,16 +14,16 @@ class CategoryItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          border: Border.fromBorderSide(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          border: const Border.fromBorderSide(
             BorderSide(
               color: AppColors.green,
               width: 3,
             ),
           ),
           image: DecorationImage(
-            image: AssetImage('assets/images/burger.png'),
+            image: NetworkImage(imageUrl),
             fit: BoxFit.cover,
           ),
         ),
@@ -37,7 +37,7 @@ class CategoryItemWidget extends StatelessWidget {
           ),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Text(
-            'Burgers',
+            categoryName,
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

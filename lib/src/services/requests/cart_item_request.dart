@@ -1,16 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'add_item_to_cart_request.g.dart';
+part 'cart_item_request.g.dart';
 
 @JsonSerializable()
-class AddItemsToCartRequest extends Equatable {
+class CartItemRequest extends Equatable {
   @JsonKey(name: 'product_name')
   final String productNameSlug;
 
   final int quantity;
 
-  const AddItemsToCartRequest({
+  const CartItemRequest({
     required this.productNameSlug,
     required this.quantity,
   });

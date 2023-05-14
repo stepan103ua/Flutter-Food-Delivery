@@ -1,7 +1,7 @@
 import 'package:food_delivery/src/errors/api_error.dart';
-import 'package:food_delivery/src/models/cart_item_model.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/pages/cart_items/models/cart_item.dart';
 import 'package:food_delivery/src/services/cart_service.dart';
-import 'package:food_delivery/src/services/requests/add_item_to_cart_request.dart';
+import 'package:food_delivery/src/services/requests/cart_item_request.dart';
 
 import '../services/slugify_service.dart';
 
@@ -15,9 +15,10 @@ class CartRepository {
   })  : _service = service,
         _slugify = slugifyService;
 
-  Future<List<CartItemModel>> getCart() async {
+  Future<List<CartItem>> getCart() async {
     try {
-      return await _service.getCart();
+      final items = await _service.getCart();
+      return items.map((e) => e.toEntity()).toList();
     } on ApiError catch (_) {
       rethrow;
     }
@@ -28,7 +29,7 @@ class CartRepository {
     required int quantity,
   }) async {
     try {
-      final request = AddItemsToCartRequest(
+      final request = CartItemRequest(
         productNameSlug: _slugify.slugify(productName),
         quantity: quantity,
       );
@@ -37,5 +38,17 @@ class CartRepository {
     } on ApiError catch (_) {
       rethrow;
     }
+  }
+
+  Future<void> removeFromCart({
+    required String productName,
+    required int quantity,
+  }) async {
+    final request = CartItemRequest(
+      productNameSlug: _slugify.slugify(productName),
+      quantity: quantity,
+    );
+
+    return _service.removeFromCart(request);
   }
 }

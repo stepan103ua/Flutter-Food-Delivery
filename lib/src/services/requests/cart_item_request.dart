@@ -15,7 +15,7 @@ class CartItemRequest extends Equatable {
     required this.quantity,
   });
 
-  Map<String, dynamic> toJson() => _$AddItemsToCartRequestToJson(this);
+  Map<String, dynamic> toJson() => _$CartItemRequestToJson(this);
 
   @override
   List<Object?> get props => [productNameSlug, quantity];

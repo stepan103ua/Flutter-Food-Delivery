@@ -19,7 +19,8 @@ class CartItemsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (_) => CartItemsCubit(),
+        create: (_) =>
+            CartItemsCubit(cartRepository: RepositoryProvider.of(context)),
         child: const CartItemsView(),
       );
 }

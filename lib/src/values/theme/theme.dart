@@ -118,6 +118,7 @@ const appBarTheme = AppBarTheme(
     fontWeight: FontWeight.bold,
   ),
   titleSpacing: 20,
+  toolbarHeight: 80,
 );
 
 final theme = ThemeData(

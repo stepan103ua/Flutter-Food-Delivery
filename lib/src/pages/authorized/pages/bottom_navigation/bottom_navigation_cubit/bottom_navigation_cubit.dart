@@ -7,7 +7,7 @@ class BottomNavigationCubit extends Cubit<BottomNavigationState> {
   BottomNavigationCubit()
       : super(
           const BottomNavigationInitial(
-            page: AuthorizedBottomNavigationPage.cart,
+            page: AuthorizedBottomNavigationPage.home,
           ),
         );
 

@@ -122,10 +122,20 @@ final theme = ThemeData(
 );
 
 extension TextThemeExtension on TextTheme {
-  TextStyle get logoTitle => const TextStyle(
+  TextStyle get logoTitleLarge => const TextStyle(
         fontSize: 48,
         fontWeight: FontWeight.w700,
         color: AppColors.green,
+      );
+  TextStyle get logoTitleMedium => const TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.w700,
+        color: AppColors.green,
+      );
+  TextStyle get categoryItemSmall => const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
       );
 }
 

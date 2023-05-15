@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/pages/category/models/categories_repository.dart';
 import 'package:food_delivery/src/values/app_constants.dart';
 import 'package:food_delivery/src/values/theme/theme.dart';
 import 'package:food_delivery/src/widgets/app_text_field.dart';
@@ -48,7 +47,9 @@ class CategoryView extends StatelessWidget {
                         mainAxisSpacing: 20,
                       ),
                       itemBuilder: (context, index) => CategoryItemWidget(
-                        onTap: () {},
+                        onTap: () => context
+                            .read<CategoryCubit>()
+                            .onCategoryOpen(state.categories[index]),
                         categoryName: state.categories[index].name,
                         imageUrl: state.categories[index].imageUrl,
                       ),

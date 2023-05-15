@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/app/app_bloc/bloc/app_bloc.dart';
 import 'package:food_delivery/src/pages/auth/view/auth_page.dart';
 import 'package:food_delivery/src/pages/authorized/view/authorized_page.dart';
-import 'package:food_delivery/src/providers/dependencies_provider.dart';
 import 'package:food_delivery/src/pages/splash_screen/view/splash_screen_page.dart';
 import 'package:food_delivery/src/values/theme/theme.dart';
 

@@ -110,11 +110,14 @@ const bottomNavigationTheme = NavigationBarThemeData(
   labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
 );
 
+const iconTheme = IconThemeData(color: AppColors.white, size: 30);
+
 final theme = ThemeData(
   useMaterial3: true,
   fontFamily: fontFamily,
   primaryColor: AppColors.green,
   scaffoldBackgroundColor: AppColors.greenBackground,
+  iconTheme: iconTheme,
   inputDecorationTheme: inputDecorationTheme,
   elevatedButtonTheme: elevatedButtonTheme,
   navigationBarTheme: bottomNavigationTheme,

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/pages/products/products_cubit/products_callback.dart';
 
 import '../../../../../../../../../errors/api_error.dart';
 import '../../../../../../../../../models/category.dart';
@@ -8,10 +9,14 @@ import '../models/categories_repository.dart';
 part 'category_state.dart';
 
 class CategoryCubit extends Cubit<CategoryState> {
+  final ProductsCallback _productsCallback;
   final CategoriesRepository _categoriesRepository;
 
-  CategoryCubit({required CategoriesRepository categoriesRepository})
-      : _categoriesRepository = categoriesRepository,
+  CategoryCubit({
+    required ProductsCallback callback,
+    required CategoriesRepository categoriesRepository,
+  })  : _categoriesRepository = categoriesRepository,
+        _productsCallback = callback,
         super(const CategoriesInitial()) {
     _init();
   }
@@ -32,5 +37,9 @@ class CategoryCubit extends Cubit<CategoryState> {
     } on ApiError catch (e) {
       emit(state.loadingError(e.toString()));
     }
+  }
+
+  void onCategoryOpen(Category category) {
+    _productsCallback.onProductsOpen(category);
   }
 }

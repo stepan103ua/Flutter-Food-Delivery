@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:food_delivery/src/services/rest_client.dart';
 
 import '../../../../../../../../../errors/api_error.dart';

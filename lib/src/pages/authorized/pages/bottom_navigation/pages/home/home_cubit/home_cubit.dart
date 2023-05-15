@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery/src/navigation/navigation_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/pages/category/category_cubit/category_callback.dart';

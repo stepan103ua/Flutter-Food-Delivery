@@ -13,32 +13,35 @@ class CategoryItemWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          border: const Border.fromBorderSide(
-            BorderSide(
-              color: AppColors.green,
-              width: 3,
-            ),
-          ),
-          image: DecorationImage(
-            image: NetworkImage(imageUrl),
-            fit: BoxFit.cover,
-          ),
-        ),
-        alignment: Alignment.bottomLeft,
+  Widget build(BuildContext context) => InkWell(
+        onTap: onTap,
         child: Container(
-          decoration: const BoxDecoration(
-            color: AppColors.green,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(6),
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            border: const Border.fromBorderSide(
+              BorderSide(
+                color: AppColors.green,
+                width: 3,
+              ),
+            ),
+            image: DecorationImage(
+              image: NetworkImage(imageUrl),
+              fit: BoxFit.cover,
             ),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          child: Text(
-            categoryName,
-            style: Theme.of(context).textTheme.titleSmall,
+          alignment: Alignment.bottomLeft,
+          child: Container(
+            decoration: const BoxDecoration(
+              color: AppColors.green,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(6),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Text(
+              categoryName,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           ),
         ),
       );

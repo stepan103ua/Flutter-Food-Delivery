@@ -1,10 +1,14 @@
 part of 'cart_cubit.dart';
 
-abstract class CartState extends Equatable {
-  const CartState();
-}
+class CartState extends Equatable with WithPageStack {
+  const CartState({required this.pages});
 
-class CartInitial extends CartState {
   @override
-  List<Object> get props => [];
+  final List<AppPage> pages;
+
+  @override
+  withPagesStack(List<AppPage> pages) => CartState(pages: pages);
+
+  @override
+  List<Object?> get props => [pages];
 }

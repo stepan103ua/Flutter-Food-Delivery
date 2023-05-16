@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/src/pages/authorized/authorized_cubit/cubit/authorized_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/pages/cart_items/models/cart_item.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
 
@@ -87,8 +89,12 @@ class CartListItem extends StatelessWidget {
                       padding: const EdgeInsets.all(10.0),
                       child: _QuantityCounter(
                         quantity: item.quantity,
-                        onAdd: () {},
-                        onRemove: () {},
+                        onAdd: () => context
+                            .read<AuthorizedCubit>()
+                            .addCartItem(item.productName),
+                        onRemove: () => context
+                            .read<AuthorizedCubit>()
+                            .removeCartItem(item.productName),
                       ),
                     ),
                     _TotalPrice(totalPrice: item.totalPrice),

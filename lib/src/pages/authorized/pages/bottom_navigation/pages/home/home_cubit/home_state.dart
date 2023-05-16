@@ -1,10 +1,14 @@
 part of 'home_cubit.dart';
 
-abstract class HomeState extends Equatable {
-  const HomeState();
+class HomeState extends Equatable with WithPageStack {
+  @override
+  final List<AppPage> pages;
+
+  const HomeState({required this.pages});
 
   @override
-  List<Object> get props => [];
-}
+  withPagesStack(List<AppPage> pages) => HomeState(pages: pages);
 
-class HomeInitial extends HomeState {}
+  @override
+  List<Object> get props => [pages];
+}

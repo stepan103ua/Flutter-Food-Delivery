@@ -15,9 +15,9 @@ class FoodDeliveryAppView extends StatelessWidget {
           theme: theme,
           home: Navigator(
             pages: [
-              if(state is AppInitializing) SplashScreenPage.page(),
-              if(state is AppAuthentication) AuthPage.page(),
-              if(state is AppAuthenticated) AuthorizedPage.page(),
+              if (state is AppInitializing) SplashScreenPage.page(),
+              if (state is AppAuthentication) AuthPage.page(),
+              if (state is AppAuthenticated) AuthorizedPage.page(),
             ],
             onPopPage: (route, result) => route.didPop(result),
           ),

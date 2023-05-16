@@ -59,7 +59,7 @@ class SplashScreenView extends StatelessWidget {
                   curve: Curves.fastLinearToSlowEaseIn,
                   child: Text(
                     appName,
-                    style: Theme.of(context).textTheme.logoTitle,
+                    style: Theme.of(context).textTheme.logoTitleLarge,
                   ),
                 ),
               )

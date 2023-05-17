@@ -122,6 +122,12 @@ final theme = ThemeData(
   elevatedButtonTheme: elevatedButtonTheme,
   navigationBarTheme: bottomNavigationTheme,
   textTheme: textTheme,
+  appBarTheme: AppBarTheme(
+    backgroundColor: AppColors.greenBackground,
+    elevation: 0,
+    iconTheme: iconTheme,
+    titleTextStyle: textTheme.titleMedium,
+  ),
 );
 
 extension TextThemeExtension on TextTheme {
@@ -136,6 +142,26 @@ extension TextThemeExtension on TextTheme {
         color: AppColors.green,
       );
   TextStyle get categoryItemSmall => const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
+      );
+  TextStyle get productDescription => const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColors.white,
+      );
+  TextStyle get productPrice => const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColors.grey,
+      );
+  TextStyle get productPriceNumber => const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: AppColors.green,
+      );
+  TextStyle get productAddToCart => const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w700,
         color: AppColors.white,

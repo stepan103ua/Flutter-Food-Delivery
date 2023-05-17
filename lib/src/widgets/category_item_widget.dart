@@ -24,25 +24,43 @@ class CategoryItemWidget extends StatelessWidget {
                 width: 3,
               ),
             ),
-            image: DecorationImage(
-              image: NetworkImage(imageUrl),
-              fit: BoxFit.cover,
-            ),
           ),
           alignment: Alignment.bottomLeft,
-          child: Container(
-            decoration: const BoxDecoration(
-              color: AppColors.green,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(6),
+          child: Stack(children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              child: SizedBox(
+                height: double.infinity,
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) =>
+                      loadingProgress == null
+                          ? child
+                          : const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                ),
               ),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Text(
-              categoryName,
-              style: Theme.of(context).textTheme.titleSmall,
+            Positioned(
+              bottom: 0,
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: AppColors.green,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(6),
+                  ),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: Text(
+                  categoryName,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ),
             ),
-          ),
+          ]),
         ),
       );
 }

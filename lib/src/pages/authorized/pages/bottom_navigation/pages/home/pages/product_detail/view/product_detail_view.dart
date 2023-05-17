@@ -74,8 +74,10 @@ class ProductDetailView extends StatelessWidget {
                               style: Theme.of(context).textTheme.productPrice,
                             ),
                             Text(
-                              '${state.product.price} ₴',
-                              style: Theme.of(context).textTheme.productPrice,
+                              '${state.product.price.ceil()} ₴',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .productPriceNumber,
                             ),
                           ],
                         ),

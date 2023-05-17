@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/src/pages/authorized/authorized_cubit/cubit/authorized_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/pages/product_detail/product_detail_cubit/product_detail_cubit.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
 import 'package:food_delivery/src/values/theme/theme.dart';
@@ -29,21 +30,21 @@ class ProductDetailView extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.width / 2,
-                      decoration: BoxDecoration(
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Image.network(
-                        state.product.image,
-                        fit: BoxFit.cover,
-                        loadingBuilder: (context, child, loadingProgress) =>
-                            loadingProgress == null
-                                ? child
-                                : const Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
+                        child: Image.network(
+                          state.product.image,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) =>
+                              loadingProgress == null
+                                  ? child
+                                  : const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -85,19 +86,26 @@ class ProductDetailView extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 4,
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
+                      child: InkWell(
+                        onTap: () => context
+                            .read<AuthorizedCubit>()
+                            .addCartItem(productName),
+                        highlightColor: Colors.transparent,
+                        splashFactory: NoSplash.splashFactory,
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                            color: AppColors.green,
                           ),
-                          color: AppColors.green,
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          addToCart,
-                          style: Theme.of(context).textTheme.productAddToCart,
+                          alignment: Alignment.center,
+                          child: Text(
+                            addToCart,
+                            style: Theme.of(context).textTheme.productAddToCart,
+                          ),
                         ),
                       ),
                     )

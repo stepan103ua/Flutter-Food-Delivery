@@ -16,9 +16,9 @@ class CategoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) => InkWell(
         onTap: onTap,
         child: Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            border: const Border.fromBorderSide(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            border: Border.fromBorderSide(
               BorderSide(
                 color: AppColors.green,
                 width: 3,
@@ -28,7 +28,7 @@ class CategoryItemWidget extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: Stack(children: [
             ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(7)),
               child: SizedBox(
                 height: double.infinity,
                 child: Image.network(

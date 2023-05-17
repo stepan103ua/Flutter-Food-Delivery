@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/bottom_navigation_cubit/bottom_navigation_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/view/cart_page.dart';
-import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/history/view/history_page.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/settings/view/settings_page.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/view/home_page.dart';
 import 'package:food_delivery/src/widgets/app_navigation_destination.dart';
 
@@ -11,7 +11,7 @@ class BottomNavigationView extends StatelessWidget {
 
   static const _homeLabel = 'Home';
   static const _cartLabel = 'Cart';
-  static const _historyLabel = 'History';
+  static const _settingsLabel = 'Settings';
 
   @override
   Widget build(BuildContext context) =>
@@ -29,7 +29,8 @@ class BottomNavigationView extends StatelessWidget {
                   child: const CartPage(),
                 ),
                 Offstage(
-                  offstage: state.page != AuthorizedBottomNavigationPage.history,
+                  offstage:
+                      state.page != AuthorizedBottomNavigationPage.settings,
                   child: const HistoryPage(),
                 ),
               ],
@@ -48,9 +49,9 @@ class BottomNavigationView extends StatelessWidget {
                 label: _cartLabel,
               ),
               AppNavigationDestination(
-                unselectedIcon: Icons.history_outlined,
-                selectedIcon: Icons.history,
-                label: _historyLabel,
+                unselectedIcon: Icons.settings_outlined,
+                selectedIcon: Icons.settings,
+                label: _settingsLabel,
               ),
             ],
             onDestinationSelected:

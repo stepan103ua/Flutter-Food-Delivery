@@ -79,6 +79,9 @@ class ProductItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width * 0.5,
+                      ),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(10),

@@ -134,12 +134,6 @@ final theme = ThemeData(
   elevatedButtonTheme: elevatedButtonTheme,
   navigationBarTheme: bottomNavigationTheme,
   textTheme: textTheme,
-  appBarTheme: AppBarTheme(
-    backgroundColor: AppColors.greenBackground,
-    elevation: 0,
-    iconTheme: iconTheme,
-    titleTextStyle: textTheme.titleMedium,
-  ),
 );
 
 extension TextThemeExtension on TextTheme {

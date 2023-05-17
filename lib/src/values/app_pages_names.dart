@@ -10,6 +10,7 @@ abstract class AppPagesNames {
 
   static const authorized = '/authorized';
   static const bottomNavigation = '/authorized/bottom_navigation';
+  static const cartItems = '/authorized/bottom_navigation/cart/cart_items';
 
   static const initialization = '/initialization';
 }

@@ -17,21 +17,23 @@ class BottomNavigationView extends StatelessWidget {
   Widget build(BuildContext context) =>
       BlocBuilder<BottomNavigationCubit, BottomNavigationState>(
         builder: (context, state) => Scaffold(
-          body: Stack(
-            children: [
-              Offstage(
-                offstage: state.page != AuthorizedBottomNavigationPage.home,
-                child: const HomePage(),
-              ),
-              Offstage(
-                offstage: state.page != AuthorizedBottomNavigationPage.cart,
-                child: const CartPage(),
-              ),
-              Offstage(
-                offstage: state.page != AuthorizedBottomNavigationPage.history,
-                child: const HistoryPage(),
-              ),
-            ],
+          body: SafeArea(
+            child: Stack(
+              children: [
+                Offstage(
+                  offstage: state.page != AuthorizedBottomNavigationPage.home,
+                  child: const HomePage(),
+                ),
+                Offstage(
+                  offstage: state.page != AuthorizedBottomNavigationPage.cart,
+                  child: const CartPage(),
+                ),
+                Offstage(
+                  offstage: state.page != AuthorizedBottomNavigationPage.history,
+                  child: const HistoryPage(),
+                ),
+              ],
+            ),
           ),
           bottomNavigationBar: NavigationBar(
             destinations: const [

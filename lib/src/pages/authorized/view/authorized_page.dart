@@ -16,7 +16,9 @@ class AuthorizedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => AuthorizedCubit(),
+        create: (context) => AuthorizedCubit(
+          cartRepository: RepositoryProvider.of(context),
+        ),
         child: const AuthorizedView(),
       );
 }

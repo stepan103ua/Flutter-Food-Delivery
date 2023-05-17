@@ -110,10 +110,22 @@ const bottomNavigationTheme = NavigationBarThemeData(
   labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
 );
 
+const appBarTheme = AppBarTheme(
+  backgroundColor: AppColors.transparent,
+  foregroundColor: AppColors.white,
+  titleTextStyle: TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.bold,
+  ),
+  titleSpacing: 20,
+  toolbarHeight: 80,
+);
+
 const iconTheme = IconThemeData(color: AppColors.white, size: 30);
 
 final theme = ThemeData(
   useMaterial3: true,
+  appBarTheme: appBarTheme,
   fontFamily: fontFamily,
   primaryColor: AppColors.green,
   scaffoldBackgroundColor: AppColors.greenBackground,

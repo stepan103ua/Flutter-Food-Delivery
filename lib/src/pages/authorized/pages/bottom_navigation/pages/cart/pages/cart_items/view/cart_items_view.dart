@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery/src/pages/authorized/authorized_cubit/cubit/authorized_cubit.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/pages/cart_items/cart_items_cubit/cart_items_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/pages/cart_items/widgets/cart_list_item.dart';
 import 'package:food_delivery/src/values/app_colors.dart';
 
@@ -61,23 +62,26 @@ class CartItemsView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 13,
-                      ),
-                      decoration: const BoxDecoration(
-                        color: AppColors.green,
-                        borderRadius: BorderRadius.horizontal(
-                          right: Radius.circular(10),
+                    GestureDetector(
+                      onTap: context.read<CartItemsCubit>().onOrder,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 13,
                         ),
-                      ),
-                      child: const Text(
-                        'Order',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.white,
+                        decoration: const BoxDecoration(
+                          color: AppColors.green,
+                          borderRadius: BorderRadius.horizontal(
+                            right: Radius.circular(10),
+                          ),
+                        ),
+                        child: const Text(
+                          'Order',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
                     )

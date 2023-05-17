@@ -6,6 +6,7 @@ import 'package:food_delivery/src/extensions/list_extension.dart';
 import 'package:food_delivery/src/navigation/navigation.dart';
 import 'package:food_delivery/src/navigation/navigation_cubit.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/pages/cart_items/models/cart_item.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/cart/pages/order/order_cubit/order_callback.dart';
 import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/view/bottom_navigation_page.dart';
 import 'package:food_delivery/src/repositories/cart_repository.dart';
 
@@ -14,7 +15,7 @@ import 'authorized_callback.dart';
 part 'authorized_state.dart';
 
 class AuthorizedCubit extends NavigationCubit<AuthorizedState>
-    implements AuthorizedAddCartItemCallback {
+    implements AuthorizedAddCartItemCallback, OrderCallback {
   final CartRepository _cartRepository;
 
   AuthorizedCubit({required CartRepository cartRepository})
@@ -90,4 +91,7 @@ class AuthorizedCubit extends NavigationCubit<AuthorizedState>
       quantity: cartItems[index].quantity,
     );
   }
+
+  @override
+  onOrderCreated() => _loadCartItems();
 }

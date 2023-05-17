@@ -22,10 +22,10 @@ class AuthorizedCubit extends NavigationCubit<AuthorizedState>
         super(
           AuthorizedState.initialPage(BottomNavigationPage.page()),
         ) {
-    _init();
+    _loadCartItems();
   }
 
-  void _init() async {
+  void _loadCartItems() async {
     try {
       final cartItems = await _cartRepository.getCart();
       emit(state.updatedCartItems(cartItems));
@@ -36,12 +36,23 @@ class AuthorizedCubit extends NavigationCubit<AuthorizedState>
   }
 
   @override
-  void addCartItem(String productName) {
+  void addCartItem(String productName) async {
     final cartItems = [...state.cartItems];
     final index =
         cartItems.indexWhere((element) => element.productName == productName);
 
     if (index == -1) {
+      try {
+        await _cartRepository.addItemToCart(
+          productName: productName,
+          quantity: 1,
+        );
+        _loadCartItems();
+      } on ApiError catch (error) {
+        log(error.message);
+        emit(state.updatedCartError(error.message));
+      }
+
       return;
     }
 
@@ -66,7 +77,7 @@ class AuthorizedCubit extends NavigationCubit<AuthorizedState>
 
     cartItems[index] = cartItems[index].copyWithDecreasedQuantity();
 
-    if(cartItems[index].quantity == 0) {
+    if (cartItems[index].quantity == 0) {
       emit(state.updatedCartItems(cartItems - [cartItems[index]]));
       _cartRepository.removeFromCart(productName: productName, quantity: 0);
       return;

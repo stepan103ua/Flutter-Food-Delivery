@@ -5,8 +5,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:food_delivery/src/dao/auth_dao.dart';
 import 'package:food_delivery/src/repositories/auth_repository.dart';
 import 'package:food_delivery/src/repositories/cart_repository.dart';
+import 'package:food_delivery/src/repositories/order_repository.dart';
 import 'package:food_delivery/src/services/auth_service.dart';
 import 'package:food_delivery/src/services/cart_service.dart';
+import 'package:food_delivery/src/services/order_service.dart';
 import 'package:food_delivery/src/services/rest_client.dart';
 import 'package:food_delivery/src/services/slugify_service.dart';
 
@@ -57,6 +59,15 @@ class DependenciesProvider extends StatelessWidget {
               slugifyService: RepositoryProvider.of(context),
             ),
           ),
+          RepositoryProvider(
+            create: (context) =>
+                OrderService(client: RepositoryProvider.of(context)),
+          ),
+          RepositoryProvider(
+            create: (context) => OrderRepository(
+              service: RepositoryProvider.of(context),
+            ),
+          )
         ],
         child: child,
       );

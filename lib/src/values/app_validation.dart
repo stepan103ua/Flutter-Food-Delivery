@@ -40,4 +40,14 @@ abstract class AppValidation {
     }
     return ValidationModel(value: field, isValid: true);
   }
+
+  static ValidationModel phoneNumberValidation(String? phoneNumber) {
+    if (phoneNumber == null || phoneNumber.isEmpty) {
+      return ValidationModel(value: phoneNumber ?? '', isValid: false);
+    }
+    final phoneNumberValid =
+        RegExp(AppRegexes.uaPhoneNumberRegex).hasMatch(phoneNumber);
+
+    return ValidationModel(value: phoneNumber, isValid: phoneNumberValid);
+  }
 }

@@ -32,4 +32,12 @@ class AuthRepository {
       return Future.error(error);
     }
   }
+
+  Future<void> logout() async {
+    try {
+      await _dao.deleteAccessToken();
+    } on ApiError catch (error) {
+      return Future.error(error);
+    }
+  }
 }

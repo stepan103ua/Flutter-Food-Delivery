@@ -6,6 +6,7 @@ abstract class AppPagesNames {
   static const home = '/home';
   static const category = '/category';
   static const products = '/products';
+  static const productDetail = '/product_detail';
 
   static const authorized = '/authorized';
   static const bottomNavigation = '/authorized/bottom_navigation';

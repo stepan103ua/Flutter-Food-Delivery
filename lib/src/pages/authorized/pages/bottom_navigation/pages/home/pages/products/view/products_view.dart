@@ -47,6 +47,9 @@ class ProductsView extends StatelessWidget {
                       mainAxisSpacing: 20,
                     ),
                     itemBuilder: (context, index) => ProductItemWidget(
+                      onProductDetailOpen: () => context
+                          .read<ProductsCubit>()
+                          .onProductDetailOpen(state.products[index].name),
                       product: state.products[index],
                     ),
                     itemCount: state.products.length,

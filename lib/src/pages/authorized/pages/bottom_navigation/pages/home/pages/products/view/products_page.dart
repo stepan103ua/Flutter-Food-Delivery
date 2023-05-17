@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/home/home_cubit/home_cubit.dart';
 
 import '../../../../../../../../../models/category.dart';
 import '../../../../../../../../../navigation/navigation.dart';
@@ -24,6 +25,7 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (_) => ProductsCubit(
+          productDetailCallback: context.read<HomeCubit>(),
           category: category.name,
           productsRepository: ProductsRepository(
             service: ProductsService(

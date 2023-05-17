@@ -8,8 +8,9 @@ class AuthDao {
   AuthDao({required FlutterSecureStorage storage}) : _storage = storage;
 
   Future<void> saveAccessToken(String token) =>
-    _storage.write(key: _accessTokenKey, value: token);
+      _storage.write(key: _accessTokenKey, value: token);
 
+  Future<void> deleteAccessToken() => _storage.delete(key: _accessTokenKey);
 
   Future<String?> get accessToken => _storage.read(key: _accessTokenKey);
 }

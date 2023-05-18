@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:food_delivery/src/pages/auth/auth_cubit/auth_callback.dart';
-import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/settings/settings_cubit/settings_callback.dart';
+import 'package:food_delivery/src/pages/authorized/pages/bottom_navigation/pages/history/history_cubit/history_callback.dart';
 import 'package:food_delivery/src/pages/splash_screen/models/initialization_result.dart';
 import 'package:food_delivery/src/pages/splash_screen/splash_screen_cubit/splash_screen_callback.dart';
 
@@ -10,7 +10,7 @@ part 'app_event.dart';
 part 'app_state.dart';
 
 class AppBloc extends Bloc<AppEvent, AppState>
-    implements AuthCallback, SplashScreenCallback, SettingsCallback {
+    implements AuthCallback, SplashScreenCallback, HistoryCallback {
   AppBloc() : super(AppInitializing()) {
     on<AppGoToAuthenticationEvent>(_onGoToAuthenticationEvent);
     on<AppGoToAuthenticatedEvent>(_onGoToAuthenticatedEvent);

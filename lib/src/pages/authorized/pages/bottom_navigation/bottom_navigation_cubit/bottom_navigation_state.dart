@@ -3,7 +3,7 @@ part of 'bottom_navigation_cubit.dart';
 enum AuthorizedBottomNavigationPage {
   home,
   cart,
-  settings,
+  history,
 }
 
 abstract class BottomNavigationState extends Equatable {

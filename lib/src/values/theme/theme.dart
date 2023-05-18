@@ -172,6 +172,11 @@ extension TextThemeExtension on TextTheme {
         fontWeight: FontWeight.w700,
         color: AppColors.white,
       );
+  TextStyle get orderDescription => const TextStyle(
+        fontSize: 16,
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
+      );
 }
 
 extension ThemeExtension on ThemeData {
